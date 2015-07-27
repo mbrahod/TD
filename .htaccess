@@ -1,0 +1,6 @@
+# MAKE SURE TO LEAVE THE NEXT TWO LINES HERE.
+# BEGIN DENY LIST --
+# END DENY LIST --
+RewriteEngine on
+RewriteCond $1 !^(index\.php|images|robots\.txt)
+RewriteRule ^(.*)$ /index.php/$1 [L]
