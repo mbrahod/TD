@@ -39,8 +39,23 @@ class Migration_Install_ion_auth extends CI_Migration
             ),
             array(
                 'id' => '2',
-                'name' => 'members',
+                'name' => 'driver',
                 'description' => 'General User'
+            ),
+            array(
+                'id' => '3',
+                'name' => 'business',
+                'description' => 'Busniess user i.e. store'
+            ),
+            array(
+                'id' => '4',
+                'name' => 'recruiter',
+                'description' => 'Recruiter'
+            ),
+            array(
+                'id' => '5',
+                'name' => 'broker',
+                'description' => 'Broker'
             )
         );
         $this->db->insert_batch('groups', $data);

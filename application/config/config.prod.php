@@ -17,7 +17,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
  * | environments.
  * |
  */
-$config['base_url'] = 'http://17.td.sbr/';
+$config['base_url'] = 'PRODUCTION_URL';
 
 /*
  * |--------------------------------------------------------------------------
