@@ -85,8 +85,8 @@ $config['salt_prefix'] = version_compare(PHP_VERSION, '5.3.7', '<') ? '$2a$' : '
  * | appropriately. If this variable set to 0, there is no maximum.
  */
 $config['site_title'] = "td.com"; // Site Title, example.com
-$config['admin_email'] = "admin@td.com"; // Admin Email, admin@example.com
-$config['default_group'] = 'members'; // Default group, use name
+$config['admin_email'] = "admin@gmail.com"; // Admin Email, admin@example.com
+$config['default_group'] = 'driver'; // Default group, use name
 $config['admin_group'] = 'admin'; // Default administrators group, use name
 $config['identity'] = 'email'; // A database column which is used to login with
 $config['min_password_length'] = 8; // Minimum Required Length of Password
@@ -124,9 +124,13 @@ $config['use_ci_email'] = TRUE; // Send Email using the builtin CI email class, 
 $config['email_config'] = array(
     'mailtype' => 'html',
     'protocol' => 'smtp',
-    'smtp_host' => 'mail.mywebsite.com',
-    'smtp_user' => 'myemail@mywebsite.com',
-    'smtp_pass' => '1234567'
+    'smtp_host' => 'smtp.gmail.com',
+	'smtp_port' => 465,
+    'smtp_user' => 'xxxxx@gmail.com',
+    'smtp_pass' => 'xxxx',
+	'smtp_crypto' => 'ssl',
+	'crlf'      => "\r\n",
+	'newline'   => "\r\n"
 );
 
 /*

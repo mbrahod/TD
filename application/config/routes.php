@@ -54,7 +54,7 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 // Authentication routes
-$route['login'] = 'Auth/login';
+/* $route['login'] = 'Auth/login';
 $route['logout'] = 'Auth/logout';
 $route['change_password'] = 'Auth/change_password';
 $route['forgot_password'] = 'Auth/forgot_password';
@@ -62,3 +62,9 @@ $route['reset_password'] = 'Auth/reset_password';
 $route['activate'] = 'Auth/activate'; // Activate the user
 $route['deactivate'] = 'Auth/deactivate';
 $route['create_user'] = 'Auth/create_user';
+ */
+
+// Driver routes
+$route['login'] = 'Driver/Auth/login';
+$route['logout'] = 'Driver/Auth/logout';
+$route['forgot_password'] = 'Driver/Auth/forgot_password';
