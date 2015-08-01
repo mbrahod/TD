@@ -51,9 +51,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
  */
 
 
-$route['dashboard'] = 'Dashboard/home';
-$route['profile']   = 'Dashboard/home/profile';
-$route['friends']   = 'Dashboard/home/friends';
+$route['dashboard'] = 'Driver/dashboard';
+$route['profile']   = 'Driver/dashboard/profile';
+$route['friends']   = 'Driver/dashboard/friends';
 
 $route['notifications'] = 'Dashboard/home/notifications';
 $route['messages']   = 'Dashboard/home/messages';
