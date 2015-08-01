@@ -1,0 +1,32 @@
+user_profile_tbl
+===================
+id: integer
+description: text
+city: (varchar150)
+company: varchar(varchar100)
+is_solo: boolean
+truck_number: varchar(100)
+csa_score: integer(100)
+id_user: ref (user)
+
+
+user_pictures
+=============
+id: integer
+id_user: ref
+path: varchar
+ext: varchar
+
+
+user_friend: (one to many)
+============
+id: integer
+id_user: integer  (user ref)
+id_friend: integer (user ref)
+
+
+feed:
+======
+id: integer
+id_user: ref
+text: text
