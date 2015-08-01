@@ -55,8 +55,8 @@ $route['dashboard'] = 'Driver/dashboard';
 $route['profile']   = 'Driver/dashboard/profile';
 $route['friends']   = 'Driver/dashboard/friends';
 
-$route['notifications'] = 'Dashboard/home/notifications';
-$route['messages']   = 'Dashboard/home/messages';
+$route['notifications'] = 'Driver/dashboard/notifications';
+$route['messages']   = 'Driver/dashboard/messages';
 
 $route['default_controller'] = 'home';
 $route['404_override'] = '';

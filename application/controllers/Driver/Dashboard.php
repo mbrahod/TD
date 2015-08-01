@@ -23,30 +23,35 @@ class Dashboard extends TD_Controller
     public function index() {
         
         $this->middle = 'dashboard/index'; // passing middle to function. change this for different views.
+        $this->data['menu_item'] = 'index';
         $this->layout();
     }
     
     public function profile() {
     
         $this->middle = 'dashboard/profile'; // passing middle to function. change this for different views.
+        $this->data['menu_item'] = 'profile';
         $this->layout();
     }
     
     public function friends() {
     
         $this->middle = 'dashboard/friends'; // passing middle to function. change this for different views.
+        $this->data['menu_item'] = 'friends';
         $this->layout();
     }
     
     public function notifications() {
     
         $this->middle = 'dashboard/notifications'; // passing middle to function. change this for different views.
+        $this->data['menu_item'] = 'notifications';
         $this->layout();
     }
     
     public function messages() {
     
         $this->middle = 'dashboard/messages'; // passing middle to function. change this for different views.
+        $this->data['menu_item'] = 'messages';
         $this->layout();
     }
 }
