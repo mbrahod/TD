@@ -3,7 +3,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Home extends TD_Controller
 {
-
+    function __construct()
+    {
+        parent::__construct();
+        $this->load->library(array(
+                'ion_auth',
+                'form_validation'
+        ));
+    }
+    
     /**
      * Index Page for this controller.
      *
@@ -22,6 +30,10 @@ class Home extends TD_Controller
      */
     public function index() {
         
+        if (!$this->ion_auth->logged_in()) {
+            // redirect them to the login page
+            redirect('login', 'refresh');
+        }
         $this->middle = 'home'; // passing middle to function. change this for different views.
         $this->layout();
     }

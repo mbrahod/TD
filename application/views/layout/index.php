@@ -31,11 +31,12 @@
 <!--Header Start-->
 <?php if($header) echo $header ;?>
 <!--Header End-->
-
-<!--Contain_box Start-->
 <div class="contain_box">
 	<div class="navbar-collapse collapse">
-    	<?php if($left) echo $left ;?>
+    <!--Contain_box Start-->
+    <?php if(isset($left) && $left):?>
+        	<?php echo $left ;?>
+    <?php endif;?>
     </div>
 </div>
 <!--Contain_box End-->

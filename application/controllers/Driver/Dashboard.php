@@ -3,7 +3,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Dashboard extends TD_Controller
 {
-
+    function __construct()
+    {
+        parent::__construct();
+        $this->load->library(array(
+                'ion_auth',
+                'form_validation'
+        ));
+    }
+    
     /**
      * Index Page for this controller.
      *
@@ -22,6 +30,8 @@ class Dashboard extends TD_Controller
      */
     public function index() {
         
+        $this->checkLogin();
+        
         $this->middle = 'dashboard/index'; // passing middle to function. change this for different views.
         $this->data['menu_item'] = 'index';
         $this->layout();
@@ -29,6 +39,8 @@ class Dashboard extends TD_Controller
     
     public function profile() {
     
+        $this->checkLogin();
+        
         $this->middle = 'dashboard/profile'; // passing middle to function. change this for different views.
         $this->data['menu_item'] = 'profile';
         $this->layout();
@@ -36,6 +48,8 @@ class Dashboard extends TD_Controller
     
     public function friends() {
     
+        $this->checkLogin();
+        
         $this->middle = 'dashboard/friends'; // passing middle to function. change this for different views.
         $this->data['menu_item'] = 'friends';
         $this->layout();
@@ -43,6 +57,8 @@ class Dashboard extends TD_Controller
     
     public function notifications() {
     
+        $this->checkLogin();
+        
         $this->middle = 'dashboard/notifications'; // passing middle to function. change this for different views.
         $this->data['menu_item'] = 'notifications';
         $this->layout();
@@ -50,8 +66,18 @@ class Dashboard extends TD_Controller
     
     public function messages() {
     
+        $this->checkLogin();
+        
         $this->middle = 'dashboard/messages'; // passing middle to function. change this for different views.
         $this->data['menu_item'] = 'messages';
         $this->layout();
+    }
+    
+    public function checkLogin() {
+        
+        if (!$this->ion_auth->logged_in()) {
+            // redirect them to the login page
+            redirect('login', 'refresh');
+        }
     }
 }
