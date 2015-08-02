@@ -1,3 +1,4 @@
+<?php $this->lang->load('driver'); ?>
 <div class="header">
 	  <div class="row">
     		<div class="col-sm-3 col-lg-3 col-md-3 header_logo"> 
@@ -8,7 +9,15 @@
        		  <ul>
         		  <li class="start"><a href="#">start trip</a></li>
                   <li class="openchart"><a href="#">open chat</a></li>
-                  <li class="logout"><a href="#">log out</a></li>
+                  	<li class="logout">
+	                  	<?php echo anchor(
+	                  			'logout', 
+	                  			lang('Logout'), 
+	                  			array(
+	                  				'title' => lang('Logout'),
+	                  				'alt' => lang('Logout')
+	                  	)); ?>
+                	</li>
       		  </ul>
             </div>
    	    </div>

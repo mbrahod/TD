@@ -15,3 +15,15 @@ $lang['login_facebook_txt'] = 'FACEBOOK';
 $lang['login_gplus_txt'] = 'GOOGLE PLUS';
 $lang['login_dont_have_account_txt'] = 'Don’t have an account yet ?  Create one';
 $lang['HERE'] = 'HERE';
+
+// Register
+$lang['Register'] = 'Register';
+$lang['First Name'] = 'First Name';
+$lang['Last Name'] = 'Last Name';
+$lang['Email'] = 'Email';
+$lang['Phone'] = 'Phone';
+$lang['Password'] = 'Password';
+$lang['Confirm Password'] = 'Confirm Password';
+$lang['Already have an account?'] = 'Already have an account?';
+$lang['Login'] = 'Login';
+$lang['Logout'] = 'Logout';

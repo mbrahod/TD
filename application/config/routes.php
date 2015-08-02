@@ -77,3 +77,5 @@ $route['create_user'] = 'Auth/create_user';
 $route['login'] = 'Driver/Auth/login';
 $route['logout'] = 'Driver/Auth/logout';
 $route['forgot_password'] = 'Driver/Auth/forgot_password';
+$route['reset_password'] = 'Driver/Auth/reset_password';
+$route['register'] = 'Driver/Auth/create_user';
