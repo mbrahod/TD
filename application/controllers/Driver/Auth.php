@@ -23,6 +23,19 @@ class Auth extends TD_Controller
         $this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));
         
         $this->lang->load(array('auth', 'driver'));
+        
+        // Facebook login cradential
+        $this->app_id = $this->config->item('app_id', 'ion_auth');
+        $this->app_secret = $this->config->item('app_secret', 'ion_auth');
+        $this->scope = $this->config->item('scope', 'ion_auth');
+        $this->return_fields = $this->config->item('return_fields', 'ion_auth');
+        
+        if($this->config->item('redirect_uri', 'ion_auth') === '' ) {
+        	$this->my_url = site_url('home');
+        } else {
+        	$this->my_url = $this->config->item('redirect_uri', 'ion_auth');
+        }
+        
     }
     
     /**
@@ -72,6 +85,88 @@ class Auth extends TD_Controller
             $this->auth_middle = 'driver/login';
             $this->auth_layout();
         }
+    }
+    
+    /**
+     * Facebook login
+     */
+    public function fb_login() {
+    	
+    	// null at first
+    	$code = $this->input->get('code');
+    	
+    	// if is not set go make a facebook connection
+    	if(!$code) {
+    	
+    		// create a unique state
+    		$this->session->set_userdata('state', md5(uniqid(rand(), TRUE)));
+    	
+    		// redirect to facebook oauth page
+    		$url_to_redirect =  "https://www.facebook.com/dialog/oauth?client_id="
+    				.$this->app_id
+    				."&redirect_uri=".urlencode($this->my_url)
+    				."&state=".$this->session->userdata('state').'&scope='.$this->scope;
+    	
+    		redirect($url_to_redirect);
+    	
+    	} else {
+    	
+    		// check if session state is equal to the returned state
+    		
+    		if($this->session->userdata('state') && ($this->session->userdata('state') === $this->input->get('state'))) {
+    	
+    	
+    			$token_url = "https://graph.facebook.com/oauth/access_token?"
+    					. "client_id=" . $this->app_id . "&redirect_uri=" . urlencode($this->my_url)
+    					. "&client_secret=" . $this->app_secret . "&code=" . $code;
+    	
+    			$response = file_get_contents($token_url);
+    			
+    			$params = null;
+    	
+    			parse_str($response, $params);
+    	
+    			$this->session->set_userdata('access_token', $params['access_token']);
+    	
+    			$graph_url = "https://graph.facebook.com/me?access_token=".$params['access_token'].'&fields='.$this->return_fields;
+    			
+    			$user = json_decode(file_get_contents($graph_url));
+    	
+    			// check if this user is already registered
+    			if(!$this->ion_auth_model->identity_check($user->email)){
+    				$name = explode(" ", $user->name);
+    				$userId = $this->ion_auth->register($user->name, 'facebookdoesnothavepass123', $user->email, array('first_name' => $name[0], 'last_name' => $name[1]));
+					
+    				if ($userId !== false) {
+    					if ($this->ion_auth->login($user->email, 'facebookdoesnothavepass123', false)) {
+    						// if the login is successful
+    						// redirect them back to the home page
+    						$this->session->set_flashdata('message', $this->ion_auth->messages());
+    						redirect('dashboard', 'refresh');
+    					} else {
+    						// if the login was un-successful
+    						// redirect them back to the login page
+    						$this->session->set_flashdata('message', $this->ion_auth->errors());
+    						redirect('login', 'refresh'); // use redirects instead of loading views for compatibility with MY_Controller libraries
+    					}
+    				}
+    			} else { 
+    				// Get user infor from database
+    				$user = $this->ion_auth->where('email', $user->email)->users()->row();
+    				
+                    $this->ion_auth->set_session($user);
+                    
+                    $this->session->set_flashdata('message', $this->ion_auth->messages());
+
+                    redirect('dashboard', 'refresh');
+    			}
+    	
+    			return true;
+    		}
+    		else {
+    			return false;
+    		}
+    	}
     }
     
     /**

@@ -124,11 +124,11 @@ $config['use_ci_email'] = TRUE; // Send Email using the builtin CI email class, 
 $config['email_config'] = array(
     'mailtype' => 'html',
     'protocol' => 'smtp',
+	'smtp_crypto' => 'ssl',
     'smtp_host' => 'smtp.gmail.com',
 	'smtp_port' => 465,
-    'smtp_user' => 'xxxxx@gmail.com',
-    'smtp_pass' => 'xxxx',
-	'smtp_crypto' => 'ssl',
+    'smtp_user' => 'rathodmbd@gmail.com',
+    'smtp_pass' => 'rat*$h0d',
 	'crlf'      => "\r\n",
 	'newline'   => "\r\n"
 );
@@ -188,8 +188,17 @@ $config['store_salt'] = FALSE;
 $config['delimiters_source'] = 'config'; // "config" = use the settings defined here, "form_validation" = use the settings defined in CI's form validation library
 $config['message_start_delimiter'] = '<p>'; // Message start delimiter
 $config['message_end_delimiter'] = '</p>'; // Message end delimiter
-$config['error_start_delimiter'] = '<p>'; // Error message start delimiter
-$config['error_end_delimiter'] = '</p>';	// Error message end delimiter
+$config['error_start_delimiter'] = '<div class="error">'; // Error message start delimiter
+$config['error_end_delimiter'] = '</div>';	// Error message end delimiter
 
 /* End of file ion_auth.php */
 /* Location: ./application/config/ion_auth.php */
+
+/**
+ * Facebook Login config
+ */ 
+$config['app_id'] = '1477056612609773';
+$config['app_secret'] = '37693695c1d0bdae1dc8c74a44accb04';
+$config['scope'] = 'email,public_profile';
+$config['redirect_uri'] = base_url() . '/fb_login';
+$config['return_fields'] = 'name,email,gender';

@@ -55,7 +55,7 @@
                             </div>
                             <div class="twiter_box">
                             	<?php echo anchor(
-                            			'#', 
+                            			'fb_login', 
                             			img(
                             				'/assets/images/facebook.png', 
                             				false, 
