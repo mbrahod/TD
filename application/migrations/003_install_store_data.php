@@ -96,6 +96,10 @@ class Migration_Install_store_data extends CI_Migration
                         'constraint' => '8',
                         'unsigned' => TRUE
                 ),
+                'zip' => array(
+                        'type' => 'VARCHAR',
+                        'constraint' => '10'
+                ),
                 'latitude' => array(
                         'type' => 'decimal',
                         'constraint' => '12,8'
@@ -121,6 +125,7 @@ class Migration_Install_store_data extends CI_Migration
                     'diesel_price' => '3.57',
                     'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tincidunt lacus quis eros rutrum, ac ornare nisi facilisis. Aliquam nec leo dui. Vivamus dignissim tellus euismod sapien ornare cursus. Lorem ipsum dolor.',
                     'owner_id' => 1,
+                    'zip'      => '76244',
                     'latitude' => '32.9344444',
                     'longitude' => '-97.2513889',
                 ),
