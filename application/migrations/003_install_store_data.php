@@ -127,6 +127,8 @@ class Migration_Install_store_data extends CI_Migration
         );
         $this->db->insert_batch('store', $data);
         
+        // Drop table 'store' if it exists
+        $this->dbforge->drop_table('store_image', TRUE);
         // Table structure for table 'store_image'
         $this->dbforge->add_field(array(
                 'id' => array(
@@ -151,43 +153,19 @@ class Migration_Install_store_data extends CI_Migration
                         'type' => 'VARCHAR',
                         'constraint' => '100'
                 ),
-                'type_id' => array(
-                        'type' => 'MEDIUMINT',
-                        'constraint' => '8'
-                ),
-                'open' => array(
+                'org_name' => array(
                         'type' => 'VARCHAR',
-                        'constraint' => '50'
-                ),
-                'diesel_price' => array(
-                        'type' => 'FLOAT',
-                        'constraint' => '50'
-                ),
-                'description' => array(
-                        'type' => 'VARCHAR',
-                        'constraint' => '255'
-                ),
-                'owner_id' => array(
-                        'type' => 'MEDIUMINT',
-                        'constraint' => '8',
-                        'unsigned' => TRUE
-                ),
-                'latitude' => array(
-                        'type' => 'decimal',
-                        'constraint' => '12,8'
-                ),
-                'longitude' => array(
-                        'type' => 'decimal',
-                        'constraint' => '12,8'
+                        'constraint' => '100'
                 ),
         ));
         $this->dbforge->add_key('id', TRUE);
-        $this->dbforge->create_table('store');
+        $this->dbforge->create_table('store_image');
         
     }
 
     public function down()
     {
+        $this->dbforge->drop_table('store_image', TRUE);
         $this->dbforge->drop_table('store_type', TRUE);
         $this->dbforge->drop_table('store', TRUE);
     }
