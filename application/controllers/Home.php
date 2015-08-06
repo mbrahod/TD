@@ -30,11 +30,14 @@ class Home extends TD_Controller
      */
     public function index() {
         
-        if (!$this->ion_auth->logged_in()) {
-            // redirect them to the login page
-            redirect('login', 'refresh');
-        }
-        $this->middle = 'home'; // passing middle to function. change this for different views.
-        $this->layout();
+        $this->auth_middle = 'home'; // passing middle to function. change this for different views.
+        $this->auth_layout();
+    }
+    
+    public function search() {
+    	
+    	$data = array('latitude' => $this->input->post('lat'), 'langitude' => $this->input->post('long'));
+    	//echo "<pre>"; print_r($data); exit;
+    	$this->load->view('search', $data);
     }
 }

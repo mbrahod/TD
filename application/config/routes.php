@@ -69,3 +69,5 @@ $route['logout'] = 'Driver/Auth/logout';
 $route['forgot_password'] = 'Driver/Auth/forgot_password';
 $route['reset_password'] = 'Driver/Auth/reset_password';
 $route['register'] = 'Driver/Auth/create_user';
+
+$route['search'] = 'Home/search';
