@@ -6,7 +6,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" type="image/x-icon" href="/assets/images/favicon.ico">
 
-    <title>Welcome to Trucker District :: <?php echo $title; ?></title>
+    <title>Welcome to Trucker District :: <?php //echo $title; ?></title>
 
     <!-- Add CSS Files -->
     <link href="/assets/css/custom.css" rel="stylesheet">
